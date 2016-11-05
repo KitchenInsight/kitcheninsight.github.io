@@ -1,4 +1,17 @@
-To find out how many cookies there are, I collected cookie recipes from the [foodnetwork](http://www.foodnetwork.com) site <sup>[1](#myfootnote1)</sup>, parsed them, and ran clustering analysis on the ingredient usage. For the details of data extraction and transformation, see this post. Here is a summary of the results.
+---
+layout: post
+title:  "Every cookie is not the same"
+date:   2016-11-03 16:05:19 +0100
+categories: jekyll update
+---
+
+The [Good Eats](https://en.wikipedia.org/wiki/Good_Eats) series by chef [Alton Brown](https://en.wikipedia.org/wiki/Alton_Brown) are very entertaining as well as educational. In one episode called [Three chips for sister Marsha](http://www.foodnetwork.com/shows/good-eats/cl-series/three-chips-for-sister-marsha2.html), Alton Brown was bullied by his sister Marsha and had to make three chocolate chip cookies for her, each with distinct texture, called *The Chewy*, *The Puffy*, and *The Thin*. He managed to tune the consistency of a baked cookie by choosing different ingredients -- all-purpose flour or cake flour, butter or shortening, baking soda or baking powder, etc.
+
+It's perhaps nothing special for a chef to make different kinds of cookies. What is special, howover, is that he has a proper explanation for each choice that he makes! Proper because they are not the kind of reasons that his grandmother did it that way or things like that. For example, because of the difference in compositions between baking powder and baking soda, baking powder would act already at low temperature. This way a cookie would have no time to spread before it will grow, which makes it puffy rather than thin! Btw, before that I didn't know that baking soda is a base while baking powder is neutral! Now to think of it, this is really one of the things that sent me down the path to chase science in home cooking.
+
+But, there can be more than three types of chocolate chip cookies, right? I used to make a crumbly cookie for my daughter before she had tooth, for example. What about a cookie that's somewhat chewy and puffy (imagining croissant-cookie..)?
+
+To find out how many cookies there are, I collected cookie recipes from the [foodnetwork](http://www.foodnetwork.com) site <sup>[1](#myfootnote1)</sup>, parsed them, and ran clustering analysis on the ingredient usage. Here is a summary of the results.
 
 ## Alton Brown's "Three Chips"
 
@@ -117,6 +130,20 @@ Main reason for choosing the transformed data (percentage) <sup>[4](#myfootnote4
 
 <img src="../pics/df.scale.var.cov.png" alt="cumulative variance proportion, ingredients as is" style="width: 50%;"/>
 
+
+### Outlier removal
+
+### Meringue is not a cookie
+
+
+To further clean up the data, I calculated Mahalanobis distance and marked 5% (24 recipes) of the recipes with the highest Mahalanobis distance as "outlier" recipes.
+
+To visualize the outliers detected, I plotted the first two PCA components (see figure below). The two components could explain around 40% of the variation -- mainly caused by the outliers. Well, French Meringue, or Baked Alaska, or Florentines, or Cheesecakes, are definitely not cookies.
+
+![](/pics/outlier.pc1.vs.pc2.png)
+
+<img src="../pics/outlier.cor.pc1.vs.pc2.text.png" alt="Outlier recipes" style="width: 60%;"/>
+
 ### Distribution of the variables
 
 After outlier removal, I plotted histogram for each ingredient (normalized). For an explanation of the meaning of each variable, see section [Percentage per ingredient category](### Percentage per ingredient category)
@@ -139,7 +166,79 @@ The top row are percentage of alternative ingredients. The bottom row are the in
 
 * The proportion of butter, white sugar, egg, and chocolate over flour (servings)) has quite some spread in the distribution. The data is however skewed because they are all positive numbers.
 
+## Clustering analysis
 
+### Number of clusters
+
+I use k-means to cluster the recipes. From the figure below, we see that with more than 5 clusters, the percentage of variations explained does not increase that much any more. So the number of clusters is selected to be 5.
+
+<img src="../pics/kmeans_p.exp_vs_centers.png" alt="K-means wss vs number of clusters" style="width: 50%;"/>
+
+### Visualizing the clustering
+
+PCA is a good way to visualize these 5 clusters.
+
+<img src="../pics/df.pctRatio.noflyer.cluster.cov.pc1.vs.pc2.png" alt="PCA visualization of the clusters" style="width: 60%;"/>
+
+Alternatively, [t-SNE](https://cran.r-project.org/web/packages/Rtsne/index.html) does even a better job at visualizing all data.
+
+<img src="../pics/rtsne_seed36perp50seedkmeans19_5cluster.png" alt="t-SNE visualization of the clusters" style="width: 60%;"/>
+
+Both recipes The Chewy and The Thin ended up to be in the same cluster (cluster 5). But in both visualizations, this cluster 5 is quite close to cluster 4 (where recipe The Puffy is in) and cluster 1. In addition, cluster 2 and 3 are quite distinct from the rest.
+
+
+### Cluster centers
+
+To look at recipes of the center of the clusters may also reveal what differentiates different clusters.
+
+<img src="../pics/kmeans.centers.barplot.png" alt="visualize cluster centers" style="width: 80%;"/>
+
+From the barplot,
+
+* Cluster 2 stands out because it doesn't use leavening agent such as baking soda or baking powder. It uses lots of egg white though -- which leavens!
+
+* Cluster 3 mostly don't use egg (value = -1 for the egg/liquid and yolk/egg column) or leavening.
+
+* Cluster 1 is very similar to the cookie clusters (4 and 5)!
+
+* Cluster 4 and 5 are remarkably similar, even for those percentage variables which should have separated a puffy cookie from a chewy cookie.
+
+To compare directly cluster center of group 4 and 5 with the three Alton Brown recipes, they are re-plotted side by side.
+
+<img src="../pics/kmeans.centers.ab.barplot.png" alt="compare cluster centers with Alton Brown recipes" style="width: 80%;"/>
+
+For most of the factors that Alton brown considered deterministic to the cookie texture,
+
+* The baking soda usage matches expectation: the puffy cookie (in cluster 4) uses exclusively baking powder and no baking powder, and other recipes in the same cluster uses rather a mix of both leavening agents, but on average higher percentage of baking powder indeed.
+
+* Other ingredients such as choice of flour, fat, or sugar, centers of cluster 4 and 5 appear very similar, which is quite unexpected.
+
+I re-plotted the t-SNE visualization but coloring now recipes which use either shortening or cake flour -- these are the ingredients that *The Puffy* uses.
+
+<img src="../pics/rtsne_vis_cakeflour_shortening.png" alt="recipes uses cake flour or shortening" style="width: 80%;"/>
+
+Turns out that there are only very few recipes which would use cake flour or shortening, which explains what these factors are not found to differentiates clusters.
+
+### Recipe titles
+
+Running a quick word count through the recipe titles of each cluster. I plot then the top occurring words per cluster (only those words that appear in more than 10% of the words, are included in the plot.)
+
+<img src="../pics/tm_wordcount_per_cluster_5groups.png" alt="word count per cluster" style="width: 80%;"/>
+
+The recipe title confirms the observations on cluster centers:
+
+* For group 1, 4, and 5, the key words "chocolate", "chip", and "cookie" are dominating.
+
+* Cluster 2 and 3 contain more often words that are not obviously cookies.
+
+* Cluster 3 has a high count on "dough". This is possible a cluster of cookie dough recipes. No matter they don't use eggs!
+
+
+## Conclusions
+
+The clustering method does a good job separating cookie recipes from non-cookie recipes.  perhaps adding this information could help the search engine of [foodnetwork](http://www.foodnetwork.com/) to spit out more relevant results -- unless they added the non-relevant recipes on purpose...
+
+Otherwise all cookie recipes simply fill the space between (and beyond) the three Alton Brown recipes. Everyone who would publish a recipe apparently has a different preference!
 
 
 ## Footnotes
@@ -153,3 +252,27 @@ The top row are percentage of alternative ingredients. The bottom row are the in
 <a name="myfootnote4">4</a>: Only 12 features for the transformed data (to percentage per category), versus 15 features for the original data, because I removed features that I consider not important. These are: water usage per unit flour (only very few recipes use water, and water information is used in calculate egg over total liquid percentage); flour usage per unit flour total (same as flour percentage); and baking soda usage per unit flour (I think it's not that important..)
 
 **todo, lookup what likelyhood means**
+
+
+
+
+
+You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+
+To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+
+Jekyll also offers powerful support for code snippets:
+
+{% highlight ruby %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
+
+Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+
+[jekyll-docs]: http://jekyllrb.com/docs/home
+[jekyll-gh]:   https://github.com/jekyll/jekyll
+[jekyll-talk]: https://talk.jekyllrb.com/
