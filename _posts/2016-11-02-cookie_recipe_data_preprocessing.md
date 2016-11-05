@@ -132,7 +132,7 @@ From the histogram, we see that:
 
 ### Patterns in cookie recipes?
 
-The goal of the above exercise is to prepare data for investigating whether there are patterns in web data of cookie recipes. See [this post](https://kitcheninsight.github.io/jekyll/update/2016/11/03/every-cookie-is-not-the-same.html) for the results!
+The goal of the above exercise is to prepare data for investigating whether there are patterns in web data of cookie recipes. See [next post](https://kitcheninsight.github.io/jekyll/update/2016/11/03/every-cookie-is-not-the-same.html) for the results!
 
 
 ------------------
