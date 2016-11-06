@@ -3,6 +3,7 @@ layout: post
 title:  "Every cookie is not the same"
 date:   2016-11-03 16:05:19 +0100
 categories: jekyll update
+permalink: /:year/:month/:title
 ---
 
 ### Three chips for sister Marsha
@@ -13,7 +14,7 @@ It's perhaps nothing special for a chef to make different kinds of cookies. What
 
 But, there can be more than three types of chocolate chip cookies, right? I used to make a *crumbly* cookie for my daughter before she had tooth, for example. What about a cookie that's somewhat chewy and puffy (imagining croissant-cookie..)?
 
-To find out how many cookies there are, I collected cookie recipes from the [foodnetwork](http://www.foodnetwork.com) site, parsed them. (For the details of data extraction and transformation, see [my post](https://kitcheninsight.github.io/jekyll/update/2016/11/02/cookie_recipe_data_preprocessing.html) for preprocessing of cookie data. It gives me more than 400 cookie recipes, where I ran clustering analysis on the ingredient usage. And here is a summary of the results.
+To find out how many cookies there are, I collected cookie recipes from the [foodnetwork](http://www.foodnetwork.com) site, parsed them. (For the details of data extraction and transformation, see [my post]({% post_url 2016-11-02-cookie_recipe_data_preprocessing %}) for preprocessing of cookie data. It gives me more than 400 cookie recipes, where I ran clustering analysis on the ingredient usage. And here is a summary of the results.
 
 ### Meringue is not a cookie
 

@@ -3,6 +3,7 @@ layout: post
 title:  "Every cookie is not the same"
 date:   2016-11-03 16:05:19 +0100
 categories: jekyll update
+published: False
 ---
 
 The [Good Eats](https://en.wikipedia.org/wiki/Good_Eats) series by chef [Alton Brown](https://en.wikipedia.org/wiki/Alton_Brown) are very entertaining as well as educational. In one episode called [Three chips for sister Marsha](http://www.foodnetwork.com/shows/good-eats/cl-series/three-chips-for-sister-marsha2.html), Alton Brown was bullied by his sister Marsha and had to make three chocolate chip cookies for her, each with distinct texture, called *The Chewy*, *The Puffy*, and *The Thin*. He managed to tune the consistency of a baked cookie by choosing different ingredients -- all-purpose flour or cake flour, butter or shortening, baking soda or baking powder, etc.

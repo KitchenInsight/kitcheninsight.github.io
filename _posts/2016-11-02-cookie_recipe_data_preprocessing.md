@@ -3,11 +3,12 @@ layout: post
 title:  "Every cookie is not the same, data pre-processing"
 date:   2016-11-02 20:16:19 +0100
 categories: jekyll update
+permalink: /:year/:month/:title
 ---
 
 [Alton Brown](https://en.wikipedia.org/wiki/Alton_Brown) has made an episode for [Good Eats](https://en.wikipedia.org/wiki/Good_Eats), called [Three chips for sister Marsha](http://www.foodnetwork.com/shows/good-eats/cl-series/three-chips-for-sister-marsha2.html). In this episode he explained how to make different types of chocolate chip cookies. The difference is mainly in the choice of ingredients and their proportions.
 
-I was curious whether various cookie recipes on the web would be similar or different from these three distinct recipes of Alton Brown. So I collected cookie recipes from the [foodnetwork](http://www.foodnetwork.com) site <sup>[1](#myfootnote1)</sup>, parsed them, and ran clustering analysis on the ingredient usage. See my [post](https://kitcheninsight.github.io/jekyll/update/2016/11/03/every-cookie-is-not-the-same.html) for the results. Here are the details of data extraction and transformation.
+I was curious whether various cookie recipes on the web would be similar or different from these three distinct recipes of Alton Brown. So I collected cookie recipes from the [foodnetwork](http://www.foodnetwork.com) site <sup>[1](#myfootnote1)</sup>, parsed them, and ran clustering analysis on the ingredient usage. See [my post]({% post_url 2016-11-03-every-cookie-is-not-the-same %}) for the results. Here are the details of data extraction and transformation.
 
 ### Alton Brown's recipes and how to transform data
 
@@ -132,7 +133,7 @@ From the histogram, we see that:
 
 ### Patterns in cookie recipes?
 
-The goal of the above exercise is to prepare data for investigating whether there are patterns in web data of cookie recipes. See [next post](https://kitcheninsight.github.io/jekyll/update/2016/11/03/every-cookie-is-not-the-same.html) for the results!
+The goal of the above exercise is to prepare data for investigating whether there are patterns in web data of cookie recipes. See [next post]({% post_url 2016-11-03-every-cookie-is-not-the-same %}) for the results!
 
 
 ------------------
