@@ -52,9 +52,8 @@ Since the proportion is important for differentiating recipes, the same recipes 
 | Baking soda / Leavening       | 1      | 0    | 1            |
 | Egg/Liquid      | 0.7         | 1               | 0.5                      |
 | White sugar / Sugar    | 0.2        | 0.4               | 0.7                        |
-| Egg Yolk / Egg      | 0.3         | 0               | 0                      |
 
-This table contains similar<sup>[2](#myfootnote2)</sup> information as the previous table, but now the differences are much more obvious. The choices for fat or leavening or flour are linked to each other. Namely, The Puffy uses shortening, baking soda, and cake flour, while The Thin and The Chewy use butter, baking powder, and all-purpose (AP) flour<sup>[3](#myfootnote3)</sup>. Next to fat, leavening and flour, the usage of liquid (egg or milk) or sugar (white or brown) differentiates all three recipes. (The usage of chocolate chips is the same for all three recipes, which is therefore omitted in the table.)
+This table contains similar<sup>[2](#myfootnote2)</sup> information as the previous table, but now the differences are much more obvious. The choices for fat or leavening or flour are linked to each other. Namely, The Puffy uses shortening, baking soda, and cake flour, while The Thin and The Chewy use butter, baking powder, and all-purpose (AP) flour<sup>[3](#myfootnote3)</sup>. Next to fat, leavening and flour, the usage of liquid (egg or milk) or sugar (white or brown) differentiates all three recipes.  (The usage of chocolate chips is the same for all three recipes, which is therefore omitted in the table.)
 
 The same transformation will be applied to the entire data set.
 
@@ -89,7 +88,7 @@ Since the relative proportions of alternative ingredients per category is, by sc
 
 These new variables then replace one variable per category since that information becomes redundant.
 
-The percentage of ingredient usage per category is in fact very informative. Figure below shows the six new variables for all 848 recipes. From the top two rows (percentage of AP flour over total flour and butter over total fat), it's already clear the the majority of the recipes prefer AP flour instead cake flour, prefer butter instead of shortening. The choice of white sugar or brown sugar (row 3) is more often mixed, with a preference to white sugar.
+The percentage of ingredient usage per category is in fact very informative. Figure below shows the six new variables for all 848 recipes. From the top two rows (percentage of AP flour over total flour and butter over total fat), it's already clear that the majority of the recipes prefer AP flour instead of cake flour, and prefer butter instead of shortening. The choice of white sugar or brown sugar (row 3) is more often mixed, with a preference to white sugar.
 
 It's almost tempting to conclude that the Puffy is not very popular. But flour and butter is not the full story. Plus, (1) comparing to cake flour, all-purpose flour may be more often present in the pantry since it's multi-purpose, (2) and butter is tastier than shortening, (3) and most people believe shortening is not as healty, etc. So other ingredients still need to be considered.
 
