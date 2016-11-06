@@ -83,7 +83,6 @@ For the cookies, it seems that they don't like to be grouped. All cookie recipes
 
 Now I know that if I ask for cookie recipes to a search engine, it will give me a list cookies, healthy options, cookie dough, Cheesecakes, and baked Alaska. Perhaps for the next generation of recipe search algorithm, it's an idea to rank the recipes also using their ingredient usage -- I do promise a more accurate search result!
 
-
 ---------------------
 
 <a name="myfootnote1">1</a>: *How did Alton Brown's Puffy cookie end up in this group is surprising. The Puffy is different from the other cookies mainly because it uses cake flour and shortening instead of all-purpose flour and butter. For all the cookie recipes in my dataset, only 17 out of 466 recipes are using cake flour or shortening. These parameters thus became less differentiating factors. However, this is probably not because puffy cookies are not popular. Other factors play a role as well. For example, many people consider shortening to be unhealthy. And in someone's pantry, cake flour is also available less often than all-purpose flour.*
